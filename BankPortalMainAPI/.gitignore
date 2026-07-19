@@ -37,12 +37,7 @@ Thumbs.db
 # Spring Boot specific
 spring.log
 
-# Application properties
-# You might want to ignore application.properties if it contains sensitive information
-application.properties
-application.yml
-application-*.properties
-application-*.yml
+# Application properties (kept in repo — secrets come from env vars)
 
 # Database
 *.h2.db
