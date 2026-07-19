@@ -67,31 +67,31 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         if (!requestTokenHeader.startsWith("Bearer ")) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
-                    "Token must start with 'Bearer '");
-
+            // Malformed header: proceed unauthenticated; protected endpoints
+            // will be rejected by the security chain.
+            filterChain.doFilter(request, response);
             return;
         }
 
         val token = requestTokenHeader.substring(7);
-        String username = null;
 
         try {
             tokenService.validateToken(token);
-            username = tokenService.getUsernameFromToken(token);
+            val username = tokenService.getUsernameFromToken(token);
 
-        } catch (InvalidTokenException e) {
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
-                    e.getMessage());
-            return;
+            val userDetails = userDetailsService.loadUserByUsername(username);
+            val authToken = new UsernamePasswordAuthenticationToken(
+                    userDetails, null, userDetails.getAuthorities());
+
+            authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(authToken);
+
+        } catch (InvalidTokenException | org.springframework.security.core.userdetails.UsernameNotFoundException e) {
+            // Invalid/stale token or unknown user: proceed unauthenticated
+            // instead of failing the request. Public endpoints (register,
+            // login) must work even when the browser sends an old token.
+            logger.warn("Ignoring invalid JWT: " + e.getMessage());
         }
-
-        val userDetails = userDetailsService.loadUserByUsername(username);
-        val authToken = new UsernamePasswordAuthenticationToken(
-                userDetails, null, userDetails.getAuthorities());
-
-        authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-        SecurityContextHolder.getContext().setAuthentication(authToken);
 
         filterChain.doFilter(request, response);
     }
