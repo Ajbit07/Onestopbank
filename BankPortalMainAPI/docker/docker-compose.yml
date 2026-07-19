@@ -13,6 +13,42 @@ services:
       - "5432:5432"
     volumes:
       - ./postgres/data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d bankingportal"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - banking-network
+
+  api:
+    build: ..
+    container_name: bankingportal-api
+    restart: unless-stopped
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/bankingportal
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      JWT_SECRET: ${JWT_SECRET:-change-me-local-dev-secret-key-0123456789abcdefghijklmnopqrstuv}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      GEO_API_KEY: ${GEO_API_KEY:-}
+    ports:
+      - "8180:8180"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - banking-network
+
+  frontend:
+    build: ../../BANKUI
+    container_name: bankingportal-ui
+    restart: unless-stopped
+    ports:
+      - "4200:80"
+    depends_on:
+      - api
     networks:
       - banking-network
 
