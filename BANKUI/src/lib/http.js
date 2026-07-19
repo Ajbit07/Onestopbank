@@ -47,8 +47,20 @@ const http = axios.create({
   baseURL: environment.apiUrl,
 });
 
+// Endpoints that must never carry an Authorization header
+const PUBLIC_PATHS = [
+  '/users/register',
+  '/users/login',
+  '/users/generate-otp',
+  '/users/verify-otp',
+  '/auth/password-reset',
+];
+
 // Request interceptor — mirrors the Angular AuthInterceptor
 http.interceptors.request.use((config) => {
+  if (PUBLIC_PATHS.some((p) => config.url?.startsWith(p))) {
+    return config;
+  }
   const token = getToken();
   if (token) {
     if (isTokenValid(token)) {
