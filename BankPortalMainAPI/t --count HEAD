@@ -1,0 +1,226 @@
+[33mcommit 3e3cc7bbf5fad17b07ea70b8a421f7f682a426a8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Create application.properties
+
+[33mcommit d64e9dd7ce7656a557ae5296338caf2d9d45b9cf[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Update README.md
+
+[33mcommit e4787f565ff912ceaf5446b102ad1d197fadeccf[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     Ajbit07 <7anujch2811@gmail.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Fix Spring Security configuration
+
+[33mcommit e5f21fa493cc23859aa9f902a4f20c29c71a74f7[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     Ajbit07 <7anujch2811@gmail.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Fix Spring Boot executable jar
+
+[33mcommit 4eb612af8f8fe3edcdfa320e73f39408147e9b00[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     Ajbit07 <7anujch2811@gmail.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Remove Maven wrapper
+
+[33mcommit 971cfe6796446c69cc3870b2adeef543d0a2f876[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     Ajbit07 <7anujch2811@gmail.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Configure Railway environment variables
+
+[33mcommit f623d072d5c1e3ab7d6c7775d7a6a6e6f7cb0132[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     Ajbit07 <7anujch2811@gmail.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Configure Railway environment variables
+
+[33mcommit 305bb033e077a7ff496ae769bb937c820b7f6e5e[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     Ajbit07 <7anujch2811@gmail.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Configure Railway environment variables
+
+[33mcommit d48c1b21e56efd4681228ab8512fde3b6e180e24[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     Ajbit07 <7anujch2811@gmail.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Configure Railway environment variables
+
+[33mcommit 1c4e4b55e50b85bf4121b9a0b52b74e52f3bf2bf[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    fix: Add RedisConnectionFailureException handler in GlobalExceptionHandler (#50)
+    
+    * fix: add RedisConnectionFailureException handler in GlobalExceptionHandler
+    
+    * fix: use Map response, add ApiMessages constant and test for Redis handler
+    
+    * fix: add missing lombok.val import in GlobalExceptionHandlerTest
+
+[33mcommit a62a1d44f02af6c88359b4a564f71832848e9d1b[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Add idempotency support for state‑changing endpoints (#49)
+
+[33mcommit 1fafb8060833a2cf944e7199823eb2eda0eb383c[m
+Merge: 7078a54 f973abd
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Merge pull request #44 from ManjuVasanth/feature/banking-statement
+    
+    Send Bank Statement on Email feature added
+
+[33mcommit 7078a541148cdf8d8490121c59d6d02d95da8fd5[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     Ajbit07 <7anujch2811@gmail.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Addressed review comments
+
+[33mcommit f973abd2762a689e631e7d156c4b7dd817bf1be9[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Update src/main/java/com/webapp/bankingportal/controller/AccountController.java
+    
+    Co-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>
+
+[33mcommit e53b47c4c6a80d6f9fa51793231261dd50130788[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     Ajbit07 <7anujch2811@gmail.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Send email if registration succeeded feature added
+
+[33mcommit d052652e7da364b1d333f741b144ed6dc0d50981[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Update src/main/java/com/webapp/bankingportal/service/AccountServiceImpl.java
+    
+    Co-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>
+
+[33mcommit 87ed767f8c41826c6ad64da0a6a2721557da589f[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Fix: Ensure cash transaction methods are transactional (#40)
+    
+    Added @Transactional annotation to ensure consistency during cashDeposit, cashWithdrawal, and fundTransfer. This prevents partial updates in case of failures.
+
+[33mcommit 0b9c3946b316c6082b9aba968b898226780cc3f5[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Update src/main/java/com/webapp/bankingportal/security/JwtAuthenticationFilter.java
+    
+    Co-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>
+
+[33mcommit f1ff98f17fd795c8d41cc7ff4b90fe13865194b4[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     Ajbit07 <7anujch2811@gmail.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    chore: Removed useOtp parameter from LoginRequest DTO.
+
+[33mcommit b5614e363018342be323a5a27f287f74290d7648[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Update src/main/java/com/webapp/bankingportal/security/JwtAuthenticationFilter.java
+    
+    Co-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>
+
+[33mcommit e1a0f16233c15f80e95f48a742e9b9c44c00f1b3[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     Ajbit07 <7anujch2811@gmail.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    fix(Auth): move the `Transactional` to annotate `resetPassword` instead of `verifyPasswordResetToken`
+
+[33mcommit 74896ca2e0c5c915a08548a645c6fb36c24772e2[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Update src/main/java/com/webapp/bankingportal/service/TransactionServiceImpl.java
+    
+    Co-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>
+
+[33mcommit a1422de7adde116e5c19825169474ed52963af02[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    refactor: move all logic from the controllers to the service layer (#33)
+    
+    * refactor: move all logic from the controllers to the service layer
+    
+    * refactor: use enum for messages
+
+[33mcommit 37baae8413147226d6cabb3543185ef26533407c[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    Update src/main/java/com/webapp/bankingportal/service/TransactionServiceImpl.java
+    
+    Co-authored-by: Copilot <175728472+Copilot@users.noreply.github.com>
+
+[33mcommit 80ac735beba4e7d498319500c48db353a28cdd7f[m
+Author:     Ajbit07 <7anujch2811@gmail.com>
+AuthorDate: 2025-10-15 12:00:00 +0000
+Commit:     GitHub <noreply@github.com>
+CommitDate: 2025-10-15 12:00:00 +0000
+
+    feat: use **Project Lombok** and add support for login using email or
