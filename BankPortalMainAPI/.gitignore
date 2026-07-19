@@ -55,6 +55,6 @@ node_modules/
 test-output/
 target/
 # Docker volumes
-docker/mysql/data/
+docker/postgres/data/
 docker/redis/data/
 
