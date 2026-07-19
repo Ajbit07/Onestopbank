@@ -1,6 +1,6 @@
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8180/api',
+  production: import.meta.env.PROD,
+  apiUrl: import.meta.env.VITE_API_URL || 'http://localhost:8180/api',
   tokenName: 'authToken',
-  origin: 'http://localhost:4200',
+  origin: window.location.origin,
 };
