@@ -22,8 +22,23 @@ jobs:
   # CI
   # ---------------------------------------------------------------
   backend:
-    name: Backend build
+    name: Backend build & test
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: bankingportal_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d bankingportal_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
 
     steps:
       - uses: actions/checkout@v5
@@ -35,13 +50,25 @@ jobs:
           distribution: temurin
           cache: maven
 
-      # Tests are skipped in CI for now. To re-enable them, change this to
-      # `mvn -B -ntp verify`, add a postgres:16 service container to this job,
-      # and export SPRING_DATASOURCE_URL / _USERNAME / _PASSWORD, JWT_SECRET and
-      # SPRING_MAIL_USERNAME / _PASSWORD (see src/test/resources/application-test.properties).
-      - name: Build
+      - name: Build and test
         working-directory: BankPortalMainAPI
-        run: mvn -B -ntp package -DskipTests
+        env:
+          SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/bankingportal_test
+          SPRING_DATASOURCE_USERNAME: postgres
+          SPRING_DATASOURCE_PASSWORD: postgres
+          SPRING_MAIL_USERNAME: test@example.com
+          SPRING_MAIL_PASSWORD: test
+          # Must be base64 (TokenServiceImpl decodes it) and >= 64 bytes for HS512.
+          JWT_SECRET: Y2ktb25seS1zaWduaW5nLWtleS1kby1ub3QtdXNlLW91dHNpZGUtY2ktMDEyMzQ1Njc4OWFiY2RlZmdoaWprbG1ub3A=
+        run: mvn -B -ntp verify
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: backend-test-reports
+          path: BankPortalMainAPI/target/surefire-reports/
+          if-no-files-found: ignore
 
       - name: Upload jar
         uses: actions/upload-artifact@v5
