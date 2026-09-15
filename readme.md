@@ -109,7 +109,7 @@ Every push and pull request to `main` runs `.github/workflows/ci-cd.yml`:
 
 | Stage | What it does |
 |-------|--------------|
-| `backend` | `mvn verify` on JDK 17 against a `postgres:16` service container; uploads surefire reports and the jar |
+| `backend` | `mvn package -DskipTests` on JDK 17; uploads the jar. Tests are skipped in CI for now (see below) |
 | `frontend` | `npm ci` + `npm run build` on Node 20; uploads `dist/` |
 | `docker` | Builds both Dockerfiles. On `main` it pushes `ghcr.io/<owner>/<repo>-api` and `-ui` tagged `latest` and `sha-<commit>`; on PRs it only builds |
 | `deploy-api` | Triggers the Render deploy hook (`main` only) |
@@ -136,6 +136,8 @@ stays green until they are configured. GHCR publishing uses the built-in
 
 ### Backend tests
 
+The test suite is **not** run in CI yet; the backend job only compiles and
+packages. The workflow has a comment showing how to turn tests back on.
 Tests read `src/test/resources/application-test.properties`, which defaults to the
 docker-compose Postgres. To run them locally:
 
