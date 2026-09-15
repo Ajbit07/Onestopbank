@@ -60,6 +60,9 @@ public abstract class BaseTest {
     @Autowired
     TokenService tokenService;
 
+    private static final Pattern OTP_PATTERN = Pattern.compile("<h2.*?>(\\d+)</h2>");
+    private static final long OTP_EMAIL_TIMEOUT_MS = 10_000;
+
     protected static final int MIN_PASSWORD_LENGTH = 8;
     protected static final int MAX_PASSWORD_LENGTH = 127;
 
@@ -256,14 +259,45 @@ public abstract class BaseTest {
     protected static String getOtpFromEmail(MimeMessage message)
             throws IOException, MessagingException {
 
+        val otp = findOtpInEmail(message);
+        if (otp == null) {
+            throw new RuntimeException("OTP not found in email");
+        }
+
+        return otp;
+    }
+
+    private static String findOtpInEmail(MimeMessage message)
+            throws IOException, MessagingException {
+
         val content = getTextFromMimeMultipart((MimeMultipart) message.getContent());
-        val pattern = Pattern.compile("<h2.*?>(\\d+)</h2>");
-        val matcher = pattern.matcher(content);
-        if (matcher.find()) {
-            return matcher.group(1);
+        val matcher = OTP_PATTERN.matcher(content);
+
+        return matcher.find() ? matcher.group(1) : null;
+    }
+
+    /**
+     * Registration also sends a welcome email, so the OTP is not necessarily in the
+     * first message an address receives, and mail is sent asynchronously. Poll the
+     * messages for that address until one carries an OTP.
+     */
+    protected static String waitForOtpEmail(String email) throws Exception {
+        val deadline = System.currentTimeMillis() + OTP_EMAIL_TIMEOUT_MS;
+
+        while (System.currentTimeMillis() < deadline) {
+            val messages = GreenMailJavaMailSender.getReceivedMessagesForDomain(email);
+            for (int i = messages.length - 1; i >= 0; i--) {
+                val otp = findOtpInEmail(messages[i]);
+                if (otp != null) {
+                    return otp;
+                }
+            }
+
+            Thread.sleep(100);
         }
 
         throw new RuntimeException("OTP not found in email");
+    }
     }
 
 }

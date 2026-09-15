@@ -497,8 +497,7 @@ public class UserControllerTests extends BaseTest {
                 .andExpect(MockMvcResultMatchers.content()
                         .string(String.format(ApiMessages.OTP_SENT_SUCCESS.getMessage(), user.getEmail())));
 
-        val receivedMessages = GreenMailJavaMailSender.getReceivedMessagesForDomain(user.getEmail());
-        val otpVerificationRequest = new OtpVerificationRequest(accountNumber, getOtpFromEmail(receivedMessages[0]));
+        val otpVerificationRequest = new OtpVerificationRequest(accountNumber, waitForOtpEmail(user.getEmail()));
 
         val loginResult = mockMvc.perform(MockMvcRequestBuilders
                 .post("/api/users/verify-otp")

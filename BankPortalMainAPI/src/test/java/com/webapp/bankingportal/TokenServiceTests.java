@@ -13,10 +13,16 @@ import com.webapp.bankingportal.util.ApiMessages;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
 import lombok.val;
 
 public class TokenServiceTests extends BaseTest {
+
+    // A valid 256-bit key that is deliberately NOT the application signing key,
+    // so tokens signed with it fail signature validation.
+    private static final java.security.Key WRONG_SIGNING_KEY = Keys.hmacShaKeyFor(
+            "wrong-signing-key-used-only-to-forge-an-invalid-signature".getBytes());
 
     @Autowired
     TokenRepository tokenRepository;
@@ -121,7 +127,7 @@ public class TokenServiceTests extends BaseTest {
     public void test_get_username_from_token_with_invalid_signature() {
         val token = Jwts.builder().setSubject(getRandomAccountNumber())
                 .setIssuedAt(new Date())
-                .signWith(SignatureAlgorithm.HS256, "invalid")
+                .signWith(WRONG_SIGNING_KEY, SignatureAlgorithm.HS256)
                 .compact();
 
         Assertions.assertThrows(InvalidTokenException.class,

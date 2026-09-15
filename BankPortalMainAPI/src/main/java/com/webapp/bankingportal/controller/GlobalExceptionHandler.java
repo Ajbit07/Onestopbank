@@ -3,6 +3,7 @@ package com.webapp.bankingportal.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.RestClientException;
@@ -22,6 +23,8 @@ import com.webapp.bankingportal.exception.OtpRetryLimitExceededException;
 import com.webapp.bankingportal.exception.PasswordResetException;
 import com.webapp.bankingportal.exception.UnauthorizedException;
 import com.webapp.bankingportal.exception.UserInvalidException;
+
+import lombok.val;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -114,6 +117,17 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserInvalidException.class)
     public ResponseEntity<String> handleUserInvalidException(UserInvalidException ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<String> handleMethodArgumentNotValidException(
+            MethodArgumentNotValidException ex) {
+        val fieldError = ex.getBindingResult().getFieldError();
+        val message = fieldError != null
+                ? fieldError.getDefaultMessage()
+                : ex.getMessage();
+
+        return ResponseEntity.badRequest().body(message);
     }
 
     @ExceptionHandler(Exception.class)
