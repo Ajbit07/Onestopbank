@@ -298,6 +298,5 @@ public abstract class BaseTest {
 
         throw new RuntimeException("OTP not found in email");
     }
-    }
 
 }
